@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <% @topics.each do |topic| %>
+          <div class="media">
+          <div class="media-left">
+            <a href="#">
+              <img class="media-object avatar-48" src="<%= topic.user&.avatar %>" alt="...">
+            </a>
+          </div>
+          <div class="media-body">
+            <%= link_to topic_path(topic) do %>
+              <h4 class="media-heading"> <%= topic.title %> </h4>
+            <% end %>
+            <div class='info'>
+              <%= link_to topic.node, topic.node, class: 'node' %>
+              •
+              <%= link_to topic.user, topic.user %>
+              •
+              <%= topic.created_at %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <div class="panel-footer">
+        <%= paginate @topics %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= link_to '新话题', new_topic_path, class: 'btn btn-success' %>
+      </div>
+    </div>
+  </div>
+</div>
+

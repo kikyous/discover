@@ -1,0 +1,19 @@
+<div class="media">
+  <div class="media-left">
+    <%= link_to main_app.user_path(reply.user || '') do %>
+      <img class="media-object avatar-48" src="<%= reply.user&.avatar || Discover::User::DEFAULT_AVATAR %>" alt="...">
+    <% end %>
+  </div>
+  <div class="media-body">
+    <div class='info'>
+      <%= link_to reply.user, reply.user %>
+      •
+      <%= reply.created_at %>
+    </div>
+    <div class>
+      <% cache reply do %>
+        <%== Kramdown::Document.new(reply.content).to_html %>
+      <% end %>
+    </div>
+  </div>
+</div>
